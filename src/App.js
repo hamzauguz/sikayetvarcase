@@ -9,6 +9,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import "./App.css";
 import Sidebar from "./components/sidebar";
 import Header from "./components/header";
+import Students from "./pages/Students";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,6 +42,19 @@ function App() {
                     <>
                       <Header />
                       <Home />
+                    </>
+                  }
+                />
+              }
+            />
+            <Route
+              path="/students"
+              element={
+                <Sidebar
+                  children={
+                    <>
+                      <Header />
+                      <Students />
                     </>
                   }
                 />
