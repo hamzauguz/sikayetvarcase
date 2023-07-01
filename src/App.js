@@ -8,6 +8,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 
 import "./App.css";
 import Sidebar from "./components/sidebar";
+import Header from "./components/header";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +35,16 @@ function App() {
             <Route
               exact
               path="/home"
-              element={<Sidebar children={<Home />} />}
+              element={
+                <Sidebar
+                  children={
+                    <>
+                      <Header />
+                      <Home />
+                    </>
+                  }
+                />
+              }
             />
             <Route
               path="/settings"

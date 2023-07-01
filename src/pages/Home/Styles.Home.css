@@ -2,6 +2,8 @@
   .custom-card-home {
     display: flex;
     flex-direction: column !important;
+
+    align-items: center;
   }
   .custom-card-container {
     margin-top: 1em;
