@@ -1,13 +1,13 @@
-import logo from "./logo.svg";
-import "./App.css";
-
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
 import React, { useEffect, useState } from "react";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+
+import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Settings from "./pages/Settings";
-
 import PrivateRoutes from "./utils/PrivateRoutes";
+
+import "./App.css";
+import Sidebar from "./components/sidebar";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,15 +24,6 @@ function App() {
     userControl();
   }, []);
 
-  const Dashboard = () => {
-    return (
-      <>
-        <Route path="/home" element={<Home />} />
-        <Route path="/settings" element={<Settings />} />
-      </>
-    );
-  };
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -40,8 +31,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to={"/home"} replace={true} />} />
           <Route exact element={<PrivateRoutes tokenstate={isLoggedIn} />}>
-            <Route exact path="/home" element={<Home />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route
+              exact
+              path="/home"
+              element={<Sidebar children={<Home />} />}
+            />
+            <Route
+              path="/settings"
+              element={<Sidebar children={<Settings />} />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>
