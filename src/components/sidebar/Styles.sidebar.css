@@ -98,7 +98,9 @@ main {
 }
 .icon,
 .link_text {
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
   white-space: nowrap;
   text-decoration: none;
   align-items: center;

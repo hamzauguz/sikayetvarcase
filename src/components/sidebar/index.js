@@ -24,32 +24,32 @@ const Sidebar = ({ children }) => {
     {
       path: "/home",
       name: "Home",
-      icon: <AiOutlineHome />,
+      icon: <AiOutlineHome size={20} />,
     },
     {
       path: "/course",
       name: "Course",
-      icon: <BsBookmark />,
+      icon: <BsBookmark size={20} />,
     },
     {
       path: "/students",
       name: "Students",
-      icon: <SlGraduation />,
+      icon: <SlGraduation size={20} />,
     },
     {
       path: "/payment",
       name: "Payment",
-      icon: <AiOutlineDollarCircle />,
+      icon: <AiOutlineDollarCircle size={20} />,
     },
     {
       path: "/report",
       name: "Report",
-      icon: <RiFileChartLine />,
+      icon: <RiFileChartLine size={20} />,
     },
     {
       path: "/settings",
       name: "Settings",
-      icon: <GiSettingsKnobs />,
+      icon: <GiSettingsKnobs size={20} />,
     },
   ];
   return (
@@ -85,7 +85,7 @@ const Sidebar = ({ children }) => {
                 to={item.path}
                 key={index}
                 className={isOpen ? "link-open" : "link"}
-                activeclassName="active"
+                activeclassname="active"
               >
                 <div className="icon">{item.icon}</div>
                 <div
@@ -101,6 +101,9 @@ const Sidebar = ({ children }) => {
             style={{ width: isOpen ? "150px" : "auto" }}
             className={"logout-container"}
             to={"/login"}
+            onClick={() => {
+              localStorage.removeItem("token");
+            }}
           >
             <div
               style={{ display: isOpen ? "block" : "none" }}
@@ -109,7 +112,7 @@ const Sidebar = ({ children }) => {
               Logout
             </div>
             <div className="icon">
-              <MdLogout />
+              <MdLogout size={20} />
             </div>
           </NavLink>
         </div>
