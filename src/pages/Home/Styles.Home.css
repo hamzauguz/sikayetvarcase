@@ -1,0 +1,22 @@
+@media (max-width: 505px) {
+  .custom-card-home {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .custom-card-container {
+    margin-top: 1em;
+  }
+}
+
+.linear-yellow {
+  background: linear-gradient(110.42deg, #feaf00 18.27%, #f8d442 91.84%);
+}
+
+.custom-card-home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 95%;
+  margin: 0 auto;
+}
