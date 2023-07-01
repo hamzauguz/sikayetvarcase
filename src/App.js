@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Settings from "./pages/Settings";
+import PrivateRoutes from "./utils/PrivateRoutes";
+
+import "./App.css";
+import Sidebar from "./components/sidebar";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const userControl = async () => {
+      const token = await localStorage.getItem("token");
+
+      if (token === null) {
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
+    };
+    userControl();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to={"/home"} replace={true} />} />
+          <Route exact element={<PrivateRoutes tokenstate={isLoggedIn} />}>
+            <Route
+              exact
+              path="/home"
+              element={<Sidebar children={<Home />} />}
+            />
+            <Route
+              path="/settings"
+              element={<Sidebar children={<Settings />} />}
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

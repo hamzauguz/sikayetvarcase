@@ -1,0 +1,42 @@
+@media (max-width: 505px) {
+  .inputwithlabelContainer {
+    width: 255px !important;
+    height: 51px !important;
+    margin: none !important;
+  }
+}
+
+.inputwithlabelContainer {
+  width: 415px;
+  height: 71px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.label-iwlc {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6c6c6c;
+}
+
+.input-iwlc {
+  height: 44px;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 2 5px 10px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  padding: 0px 10px;
+}
+
+.input-iwlc::placeholder {
+  color: #cdcdcd;
+  font-size: 12px;
+  line-height: 14.5px;
+}
+
+.input-iwlc:focus {
+  outline-color: #f8d442;
+  box-shadow: 2 5px 10px rgba(0, 0, 0, 0.1);
+}

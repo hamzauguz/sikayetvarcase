@@ -1,0 +1,120 @@
+@media (max-width: 505px) {
+  .cardLogin {
+    width: 320px !important;
+    height: 600px !important;
+  }
+  .cardLoginTitle {
+    font-weight: 500 !important;
+    font-size: 25px !important;
+  }
+  .loginDescTitle {
+    font-weight: 300 !important;
+    font-size: 12px !important;
+  }
+  .signin-button {
+    width: 250px !important;
+    height: 34px !important;
+    font-size: 12px !important;
+    line-height: 17px;
+    cursor: pointer;
+  }
+
+  .signin-forgotpass-style {
+    font-size: 12px !important;
+  }
+}
+
+.containerLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow-x: hidden;
+  max-width: center;
+  background: linear-gradient(to left, #f9d23d, #feaf02);
+}
+
+.cardLogin {
+  background-color: white;
+  width: 475px;
+  height: 550px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 2 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.topLoginPlace {
+  flex: 0.4;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.cardLoginTitle {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  border-left: 6px solid #f8d442;
+  padding-left: 0.3em;
+}
+
+.topLoginEndPlace {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.bottomLoginPlace {
+  flex: 0.6;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 1em;
+}
+
+.loginSignInTitle {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26.82px;
+  margin-bottom: 0.5em;
+}
+
+.loginDescTitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.signin-button {
+  width: 415px;
+  height: 44px;
+  background-color: #feaf00;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+}
+
+.signin-forgotpass-style {
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.login-resetpw-place {
+  margin-left: 0.2em;
+  color: #feaf00;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
