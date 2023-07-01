@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+}
+main {
+  width: 100%;
+  padding: 20px;
+}
+.sidebar {
+  background: #f2eae1;
+  color: black;
+  height: 100vh;
+  width: 200px;
+  transition: all 0.5s;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+.top_section {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+  height: 5em;
+  justify-content: space-between;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  white-space: nowrap;
+  border-left: 6px solid #f8d442;
+  padding-left: 0.3em;
+}
+.bars {
+  display: flex;
+  font-size: 25px;
+  margin-left: 50px;
+}
+
+.link {
+  display: flex;
+  color: #000;
+  padding: 15px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+}
+.link-open {
+  display: flex;
+  color: #000;
+  padding: 0px 15px;
+  transition: all 0.5s;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  gap: 30px;
+  width: 170px;
+  margin: 0 auto;
+  height: 41px;
+  border-radius: 4px;
+}
+
+.pages-router-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0.7;
+}
+
+.menuitem-container {
+  flex: 0.7;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+}
+.link:hover {
+  background: #feaf00;
+
+  color: #000;
+  transition: all 0.5s;
+}
+.link-open:hover {
+  background: #feaf00;
+  color: #000;
+  transition: all 0.5s;
+}
+.logout-container:hover {
+  background: #feaf00;
+  color: #000;
+  transition: all 0.5s;
+}
+
+.active {
+  background: #feaf00;
+
+  color: #000;
+}
+.icon,
+.link_text {
+  font-size: 20px;
+  white-space: nowrap;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.sidebar-user-place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: space-between;
+  flex: 0.26;
+}
+.avatar-bottom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidebar-avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+}
+
+.avatar-name {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 20.5px;
+  margin-top: 0.5em;
+}
+
+.avatar-call {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #feaf00;
+}
+
+.logout-container {
+  display: flex;
+  color: #000;
+  padding: 0px 15px;
+  transition: all 0.5s;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto;
+  height: 41px;
+  background-color: transparent;
+}
