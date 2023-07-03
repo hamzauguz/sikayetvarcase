@@ -4,11 +4,13 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Settings from "./pages/Settings";
-import PrivateRoutes from "./utils/PrivateRoutes";
+import Students from "./pages/Students";
 
-import "./App.css";
+import PrivateRoutes from "./utils/PrivateRoutes";
 import Sidebar from "./components/sidebar";
 import Header from "./components/header";
+
+import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,6 +43,19 @@ function App() {
                     <>
                       <Header />
                       <Home />
+                    </>
+                  }
+                />
+              }
+            />
+            <Route
+              path="/students"
+              element={
+                <Sidebar
+                  children={
+                    <>
+                      <Header />
+                      <Students />
                     </>
                   }
                 />
