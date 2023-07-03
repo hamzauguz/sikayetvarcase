@@ -1,0 +1,6 @@
+.table-avatar-image {
+  width: 65px;
+  height: 55px;
+  object-fit: cover;
+  padding: 0 10px;
+}

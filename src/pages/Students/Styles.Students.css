@@ -1,0 +1,54 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  font-size: 32px;
+}
+
+th {
+  background-color: #f8f8f8;
+}
+
+td {
+  background-color: #fff;
+}
+
+tbody > tr {
+  background: transparent;
+  overflow: hidden;
+  border-top: 10px solid #f8f8f8;
+  border-bottom: 10px solid #f8f8f8;
+  height: 85px;
+}
+
+thead > tr {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14.5px;
+  color: #acacac;
+  height: 50px;
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+form td:last-child {
+  border-top-right-radius: 8px;
+}
+
+form * {
+  font-size: 13px;
+}
