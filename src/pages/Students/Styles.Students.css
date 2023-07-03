@@ -3,16 +3,15 @@
   flex-direction: column;
   gap: 10px;
   padding: 1rem;
-  background-color: #f8f8f8;
 }
 
 table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 th,
 td {
-  text-align: left;
   font-size: 32px;
 }
 
@@ -22,14 +21,25 @@ th {
 
 td {
   background-color: #fff;
+  border: none;
+  padding: 8px;
 }
 
 tbody > tr {
-  background: transparent;
-  overflow: hidden;
   border-top: 10px solid #f8f8f8;
   border-bottom: 10px solid #f8f8f8;
   height: 85px;
+
+  background: transparent;
+  border-left: none;
+  text-align: center;
+}
+
+tbody > td {
+  text-align: left;
+}
+
+.table-item {
 }
 
 thead > tr {
@@ -46,9 +56,78 @@ form {
 }
 
 form td:last-child {
-  border-top-right-radius: 8px;
+  text-align: center;
 }
 
 form * {
   font-size: 13px;
+}
+
+.table-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  height: 60px;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.students-title {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+}
+
+.inputwithSearch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 3em;
+}
+
+.table-header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-header-input {
+  width: 212px;
+  height: 37px;
+  text-decoration: none;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 0 10px;
+}
+
+.form-header-input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+
+  line-height: 17px;
+}
+
+.form-header-searchicon {
+  margin-left: -2em;
+}
+
+.table-header-button {
+  width: 199px;
+  height: 44px;
+  border-radius: 4px;
+  background-color: #feaf00;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  color: white;
+  cursor: pointer;
 }

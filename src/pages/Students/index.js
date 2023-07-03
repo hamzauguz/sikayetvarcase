@@ -1,9 +1,13 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./Styles.Students.css";
 import EditTableRow from "../../components/edit-table-row";
 import ReadOnlyRow from "../../components/read-only-row";
 import data from "../../mock-data.json";
+import useTable from "../../utils/useTable";
+import TableFooter from "../../components/table-footer";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Students = () => {
   const [contacts, setContacts] = useState(data);
@@ -111,22 +115,40 @@ const Students = () => {
     setContacts(newContacts);
   };
 
+  const navigate = useNavigate();
+  const [page, setPage] = useState(1);
+  const [selectedOptionNumber, setSelectedOptionNumber] = useState(6);
+  console.log(selectedOptionNumber);
+
+  const { slice, range } = useTable(contacts, page, selectedOptionNumber);
+
   return (
     <div className="app-container">
-      <form onSubmit={handleEditFormSubmit}>
+      <form className="table-form" onSubmit={handleEditFormSubmit}>
+        <div className="table-header">
+          <span className="students-title">Students</span>
+          <div className="table-header-right">
+            <div className="inputwithSearch">
+              <input className="form-header-input" placeholder="Search..." />
+              <AiOutlineSearch size={18} className="form-header-searchicon" />
+            </div>
+            <span className="table-header-button">ADD NEW STUDENT</span>
+          </div>
+        </div>
         <table>
           <thead>
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
               <th>Email</th>
-              <th>Actions</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Company Name</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            {contacts.map((contact) => (
+            {slice.map((contact) => (
               <Fragment>
                 {editContactId === contact.id ? (
                   <EditTableRow
@@ -145,9 +167,16 @@ const Students = () => {
             ))}
           </tbody>
         </table>
+        <TableFooter
+          range={range}
+          slice={slice}
+          setPage={setPage}
+          page={page}
+          setSelectedOptionNumber={setSelectedOptionNumber}
+        />
       </form>
 
-      <h2>Add a Contact</h2>
+      {/* <h2>Add a Contact</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
@@ -178,7 +207,7 @@ const Students = () => {
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>
-      </form>
+      </form> */}
     </div>
   );
 };

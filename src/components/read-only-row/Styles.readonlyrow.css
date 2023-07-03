@@ -3,4 +3,8 @@
   height: 55px;
   object-fit: cover;
   padding: 0 10px;
+  text-align: left;
+}
+.table-avatar-image-container {
+  text-align: left;
 }

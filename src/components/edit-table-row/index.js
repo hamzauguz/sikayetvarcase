@@ -8,6 +8,7 @@ const EditTableRow = ({
 }) => {
   return (
     <tr>
+      <td></td>
       <td>
         <input
           type="text"
@@ -49,7 +50,9 @@ const EditTableRow = ({
         ></input>
       </td>
       <td>
-        <button type="submit">Save</button>
+        <button style={{ marginRight: 10 }} type="submit">
+          Save
+        </button>
         <button type="button" onClick={handleCancelClick}>
           Cancel
         </button>
