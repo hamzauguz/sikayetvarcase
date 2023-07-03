@@ -37,17 +37,19 @@ const TableFooter = ({
   console.log("range: ", range);
   return (
     <div className={"tableFooter"}>
-      {range.map((el, index) => (
-        <button
-          key={index}
-          className={`button ${
-            page === el ? "activeButton" : "inactiveButton"
-          }`}
-          onClick={() => setPage(el)}
-        >
-          {el}
-        </button>
-      ))}
+      <div className="pagination-buttons">
+        {range.map((el, index) => (
+          <button
+            key={index}
+            className={`button ${
+              page === el ? "activeButton" : "inactiveButton"
+            }`}
+            onClick={() => setPage(el)}
+          >
+            {el}
+          </button>
+        ))}
+      </div>
       <div className="nextPre-buttons">
         <div className="nextPre-buttons-left">
           <button style={{ marginRight: 5 }}>Change</button>

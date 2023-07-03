@@ -1,3 +1,28 @@
+@media (max-width: 750px) {
+  .table-header {
+    flex-direction: column !important;
+  }
+  .students-title {
+    font-size: 14px !important;
+    text-align: left !important;
+
+    align-self: flex-start !important;
+  }
+  .form-header-input {
+    width: 150px !important;
+    height: 25px !important;
+  }
+  .table-header-button {
+    width: 100px !important;
+    height: 25px !important;
+    font-size: 10px !important;
+  }
+  .table-header-right {
+    justify-content: space-between !important;
+    width: 100%;
+  }
+}
+
 .app-container {
   display: flex;
   flex-direction: column;

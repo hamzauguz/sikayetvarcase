@@ -87,5 +87,15 @@
     "website": "https://hamzauguz.dev/",
 
     "email": "jeremy.clark@email.com"
+  },
+  {
+    "id": 10,
+    "image": "https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_1280.jpg",
+    "fullName": "Jenny Chan",
+    "address": "3 waterfoot road",
+    "phoneNumber": "333-962-7516",
+    "website": "https://hamzauguz.dev/",
+
+    "email": "jenny.chan@email.com"
   }
 ]

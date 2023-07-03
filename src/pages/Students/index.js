@@ -8,8 +8,13 @@ import useTable from "../../utils/useTable";
 import TableFooter from "../../components/table-footer";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useMediaQuery } from "@react-hook/media-query";
+import MobileTable from "../../components/mobile-table";
+import tableHeaderItem from "../../apis/tableHeaderItem";
 
 const Students = () => {
+  const isMobile = useMediaQuery("(max-width: 750px)");
+
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     fullName: "",
@@ -136,17 +141,15 @@ const Students = () => {
           </div>
         </div>
         <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Website</th>
-              <th>Company Name</th>
-              <th></th>
-            </tr>
-          </thead>
+          {!isMobile && (
+            <thead>
+              <tr>
+                {tableHeaderItem.map((item, key) => (
+                  <th key={key}>{item.title}</th>
+                ))}
+              </tr>
+            </thead>
+          )}
           <tbody>
             {slice.map((contact) => (
               <Fragment>
@@ -156,6 +159,8 @@ const Students = () => {
                     handleEditFormChange={handleEditFormChange}
                     handleCancelClick={handleCancelClick}
                   />
+                ) : isMobile ? (
+                  <MobileTable contact={contact} />
                 ) : (
                   <ReadOnlyRow
                     contact={contact}
