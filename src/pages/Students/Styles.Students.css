@@ -21,6 +21,17 @@
     justify-content: space-between !important;
     width: 100%;
   }
+
+  .is-mobile-add-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15em;
+  }
+
+  .is-mobile-add-container > td > input {
+    width: 80% !important;
+    height: 20px;
+  }
 }
 
 .app-container {

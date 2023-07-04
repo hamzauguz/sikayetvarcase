@@ -1,13 +1,15 @@
 .mobile-table-container {
   display: flex;
   font-display: row;
-  margin-top: 1em;
+  margin-top: 1em !important;
   border: 1px solid gray;
   height: auto;
   padding: 5px 10px;
   justify-content: space-around;
   border-radius: 0.4em;
   overflow: hidden;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .mobile-header {

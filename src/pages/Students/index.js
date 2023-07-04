@@ -261,7 +261,7 @@ const Students = () => {
 
           <tbody>
             {addItem && (
-              <tr>
+              <tr className="is-mobile-add-container">
                 <td></td>
                 <td>
                   <input
@@ -341,7 +341,6 @@ const Students = () => {
                     contact={contact}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
-                    // handleDeleteClick={openAlert}
                   />
                 ) : (
                   <ReadOnlyRow

@@ -9,12 +9,15 @@
   }
 
   .button {
-    flex-shrink: 0;
-    scroll-snap-align: start;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start !important;
   }
 
   .pagination-buttons {
     width: 7em !important;
+    z-index: 9999 !important;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
   }
 }
 
@@ -37,6 +40,8 @@
   cursor: pointer;
   margin-right: 4px;
   margin-left: 4px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
 .activeButton {
