@@ -12,10 +12,30 @@ import axios from "../../services";
 import { API_USERS_URL, BASE_URL } from "../../apis";
 import debounce from "lodash.debounce";
 import MobileEditTable from "../../components/mobile-edit-table";
+import { Toaster, toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Students = () => {
   const isMobile = useMediaQuery("(max-width: 750px)");
 
+  const openAlert = () => {
+    Swal.fire({
+      title: "Sil",
+      text: "Bu etkinliği silmek istiyor musunuz?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Evet",
+      cancelButtonText: "Hayır",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Kullanıcı "Evet" butonuna tıkladı
+        // İşlemleri burada gerçekleştirin
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Kullanıcı "Hayır" butonuna tıkladı veya dışarıya tıklandı
+        // İşlemleri burada gerçekleştirin
+      }
+    });
+  };
   const [addFormData, setAddFormData] = useState({
     image: "",
     firstName: "",
@@ -91,6 +111,7 @@ const Students = () => {
       .post(API_USERS_URL + "/add", newContact)
       .then((response) => {
         console.log(response);
+        toast.success("Data successfully added");
       })
       .catch((error) => {
         console.error(error);
@@ -121,14 +142,32 @@ const Students = () => {
       university: editFormData.university,
     };
 
-    axios
-      .put(API_USERS_URL + "/" + editContactId, editedContact)
-      .then((response) => {
-        console.log("response edit: ", response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    Swal.fire({
+      title: "Edit",
+      text: "Would you like to change this event?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Kullanıcı "Evet" butonuna tıkladı
+        // İşlemleri burada gerçekleştirin
+        axios
+          .put(API_USERS_URL + "/" + editContactId, editedContact)
+          .then((response) => {
+            console.log("response edit: ", response);
+            toast.success("Data successfully changed");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Kullanıcı "Hayır" butonuna tıkladı veya dışarıya tıklandı
+        // İşlemleri burada gerçekleştirin
+      }
+    });
+
     setEditContactId(null);
     console.log("edit");
   };
@@ -149,14 +188,31 @@ const Students = () => {
   };
 
   const handleDeleteClick = (contactId) => {
-    axios
-      .delete(API_USERS_URL + "/" + contactId)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    Swal.fire({
+      title: "Delete",
+      text: "Would you like to delete this event?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Kullanıcı "Evet" butonuna tıkladı
+        // İşlemleri burada gerçekleştirin
+        axios
+          .delete(API_USERS_URL + "/" + contactId)
+          .then((response) => {
+            console.log(response.data);
+            toast.success("Data successfully deleted.");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Kullanıcı "Hayır" butonuna tıkladı veya dışarıya tıklandı
+        // İşlemleri burada gerçekleştirin
+      }
+    });
   };
 
   const handleCancelClick = () => {
@@ -182,6 +238,7 @@ const Students = () => {
 
   return (
     <div className="app-container">
+      <Toaster position="top-right" reverseOrder={false} />
       <form className="table-form" onSubmit={handleEditFormSubmit}>
         <div className="table-header">
           <span className="students-title">Students</span>
@@ -221,7 +278,6 @@ const Students = () => {
                   <input
                     name="firstName"
                     type="text"
-                    required="required"
                     placeholder="Enter a name..."
                     onChange={handleAddFormChange}
                     value={addFormData.firstName}
@@ -231,7 +287,6 @@ const Students = () => {
                   <input
                     name="email"
                     type="email"
-                    required="required"
                     placeholder="Enter an email..."
                     onChange={handleAddFormChange}
                     value={addFormData.email}
@@ -241,7 +296,6 @@ const Students = () => {
                   <input
                     name="phone"
                     type="text"
-                    required="required"
                     placeholder="Enter a phone number..."
                     onChange={handleAddFormChange}
                     value={addFormData.phoneNumber}
@@ -251,7 +305,6 @@ const Students = () => {
                   <input
                     name="domain"
                     type="text"
-                    required="required"
                     placeholder="Enter an domain..."
                     onChange={handleAddFormChange}
                     value={addFormData.domain}
@@ -267,11 +320,18 @@ const Students = () => {
                     value={addFormData.university}
                   />
                 </td>
-                <button onClick={() => handleAddFormSubmit()}>Add</button>
+                <td>
+                  <span
+                    className="add-table-button"
+                    onClick={() => handleAddFormSubmit()}
+                  >
+                    Add
+                  </span>
+                </td>
               </tr>
             )}
             {slice.map((contact, key) => (
-              <Fragment>
+              <Fragment key={key}>
                 {editContactId === contact.id ? (
                   isMobile ? (
                     <MobileEditTable
@@ -288,9 +348,11 @@ const Students = () => {
                   )
                 ) : isMobile ? (
                   <MobileTable
+                    key={key}
                     contact={contact}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
+                    // handleDeleteClick={openAlert}
                   />
                 ) : (
                   <ReadOnlyRow

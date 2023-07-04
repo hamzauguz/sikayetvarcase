@@ -30,6 +30,10 @@
   padding: 1rem;
 }
 
+.confirm-alert-container {
+  width: 2em;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -155,4 +159,17 @@ form * {
   line-height: 17px;
   color: white;
   cursor: pointer;
+}
+
+.add-table-button {
+  background-color: #feaf00;
+  color: white;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-table-button:hover {
+  background-color: #ffca59;
 }
