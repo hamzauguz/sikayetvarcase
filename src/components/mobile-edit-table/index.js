@@ -13,6 +13,7 @@ const MobileEditTable = ({
       <div className="mobile-header">
         {tableHeaderItem.map((item, key) => (
           <span
+            key={key}
             className={`table-header-item edit-mobile-table  header-img-${key}`}
           >
             {item.title}

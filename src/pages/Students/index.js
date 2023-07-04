@@ -100,6 +100,15 @@ const Students = () => {
       .then((response) => {
         console.log(response);
         toast.success("Data successfully added");
+        setAddFormData({
+          image: "",
+          firstName: "",
+          email: "",
+          phone: "",
+          domain: "",
+          university: "",
+        });
+        setAddItem(false);
       })
       .catch((error) => {
         console.error(error);
@@ -278,7 +287,7 @@ const Students = () => {
                     type="text"
                     placeholder="Enter a phone number..."
                     onChange={handleAddFormChange}
-                    value={addFormData.phoneNumber}
+                    value={addFormData.phone}
                   />
                 </td>
                 <td>
