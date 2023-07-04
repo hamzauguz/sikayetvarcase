@@ -9,7 +9,7 @@ const MobileTable = ({ contact, handleEditClick, handleDeleteClick }) => {
     <div className="mobile-table-container">
       <div className="mobile-header">
         {tableHeaderItem.map((item, key) => (
-          <span className={`table-header-item  header-img-${key}`}>
+          <span key={key} className={`table-header-item  header-img-${key}`}>
             {item.title}
           </span>
         ))}

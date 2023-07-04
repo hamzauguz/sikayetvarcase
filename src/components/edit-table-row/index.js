@@ -57,11 +57,19 @@ const EditTableRow = ({
           onChange={handleEditFormChange}
         ></input>
       </td>
-      <td>
-        <button style={{ marginRight: 10 }} type="submit">
+      <td className="last-butons-container">
+        <button
+          className="edit-table-button"
+          style={{ marginRight: 10 }}
+          type="submit"
+        >
           Save
         </button>
-        <button type="button" onClick={handleCancelClick}>
+        <button
+          className="edit-table-button"
+          type="button"
+          onClick={handleCancelClick}
+        >
           Cancel
         </button>
       </td>
