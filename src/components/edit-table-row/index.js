@@ -14,8 +14,8 @@ const EditTableRow = ({
           type="text"
           required="required"
           placeholder="Enter a name..."
-          name="fullName"
-          value={editFormData.fullName}
+          name="firstName"
+          value={editFormData.firstName}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -24,8 +24,8 @@ const EditTableRow = ({
           type="text"
           required="required"
           placeholder="Enter an address..."
-          name="address"
-          value={editFormData.address}
+          name="email"
+          value={editFormData.email}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -34,18 +34,26 @@ const EditTableRow = ({
           type="text"
           required="required"
           placeholder="Enter a phone number..."
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
+          name="phone"
+          value={editFormData.phone}
           onChange={handleEditFormChange}
         ></input>
       </td>
       <td>
         <input
-          type="email"
           required="required"
-          placeholder="Enter an email..."
-          name="email"
-          value={editFormData.email}
+          placeholder="Enter an domain..."
+          name="domain"
+          value={editFormData.domain}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          required="required"
+          placeholder="Enter an university..."
+          name="university"
+          value={editFormData.university}
           onChange={handleEditFormChange}
         ></input>
       </td>

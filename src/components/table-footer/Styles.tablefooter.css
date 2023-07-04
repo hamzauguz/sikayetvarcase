@@ -12,11 +12,15 @@
     flex-shrink: 0;
     scroll-snap-align: start;
   }
+
+  .pagination-buttons {
+    width: 7em !important;
+  }
 }
 
 .tableFooter {
   background-color: #f1f1f1;
-  padding: 8px 0px;
+  padding: 8px 8px;
   width: 100%;
   font-weight: 500;
   text-align: left;
@@ -61,7 +65,7 @@
 }
 
 .pagination-buttons {
-  width: 40% !important;
+  width: 25em;
   display: flex;
   flex-direction: row;
   overflow: auto;

@@ -9,11 +9,12 @@ const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
       <td className="table-avatar-image-container">
         <img className="table-avatar-image" src={contact.image} />
       </td>
-      <td>{contact.fullName}</td>
-      <td>{contact.address}</td>
-      <td>{contact.phoneNumber}</td>
-      <td>{contact.website}</td>
+      <td>{contact.firstName}</td>
       <td>{contact.email}</td>
+      <td>{contact.phone}</td>
+      <td>{contact.domain}</td>
+      <td>{contact.university}</td>
+
       <td>
         <BsPencil
           size={20}

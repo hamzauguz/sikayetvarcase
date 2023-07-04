@@ -28,21 +28,13 @@ const Login = () => {
     userControl();
   }, []);
 
-  console.log(inputs);
-
-  console.log(inputs.useremail);
-  console.log(inputs.userpassword);
-
   const handleLogin = () => {
-    console.log("click");
     if (userEmail === "hello@sikayetvar.com" && userPassword === "123") {
       localStorage.setItem("token", userEmail);
       window.location.reload();
       setTimeout(() => {
         navigate("/home");
       }, 1000);
-
-      console.log("click inside");
     }
   };
 

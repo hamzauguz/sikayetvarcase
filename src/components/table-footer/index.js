@@ -13,7 +13,6 @@ const TableFooter = ({
   setSelectedOptionNumber,
 }) => {
   const [selectedOption, setSelectedOption] = useState(6);
-  console.log("selectedOption: ", selectedOption);
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -34,7 +33,6 @@ const TableFooter = ({
       </option>
     );
   }
-  console.log("range: ", range);
   return (
     <div className={"tableFooter"}>
       <div className="pagination-buttons">
@@ -52,7 +50,7 @@ const TableFooter = ({
       </div>
       <div className="nextPre-buttons">
         <div className="nextPre-buttons-left">
-          <button style={{ marginRight: 5 }}>Change</button>
+          <span style={{ marginRight: 5 }}>Count:</span>
           <select value={selectedOption} onChange={handleOptionChange}>
             {options}
           </select>

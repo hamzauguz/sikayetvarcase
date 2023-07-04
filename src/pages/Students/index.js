@@ -1,36 +1,65 @@
-import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
+import React, { useState, Fragment, useEffect, useMemo } from "react";
 import "./Styles.Students.css";
 import EditTableRow from "../../components/edit-table-row";
 import ReadOnlyRow from "../../components/read-only-row";
-import data from "../../mock-data.json";
 import useTable from "../../utils/useTable";
 import TableFooter from "../../components/table-footer";
-import { useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useMediaQuery } from "@react-hook/media-query";
 import MobileTable from "../../components/mobile-table";
 import tableHeaderItem from "../../apis/tableHeaderItem";
+import axios from "../../services";
+import { API_USERS_URL, BASE_URL } from "../../apis";
+import debounce from "lodash.debounce";
+import MobileEditTable from "../../components/mobile-edit-table";
 
 const Students = () => {
   const isMobile = useMediaQuery("(max-width: 750px)");
 
-  const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
+    image: "",
+    firstName: "",
     email: "",
+    phone: "",
+    domain: "",
+    university: "",
   });
 
   const [editFormData, setEditFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
+    image: "",
+    firstName: "",
     email: "",
+    phone: "",
+    domain: "",
+    university: "",
   });
 
   const [editContactId, setEditContactId] = useState(null);
+  const [page, setPage] = useState(1);
+  const [selectedOptionNumber, setSelectedOptionNumber] = useState(6);
+  const [addItem, setAddItem] = useState(false);
+  const [usersData, setUsersData] = useState([]);
+  const [searchData, setSearchData] = useState("");
+
+  const { slice, range } = useTable(usersData, page, selectedOptionNumber);
+
+  useEffect(() => {
+    const getData = async () => {
+      await axios
+        .get(API_USERS_URL + `/search?q=${searchData}`, {
+          params: {
+            skip: (page - 1) * selectedOptionNumber,
+            limit: 110,
+          },
+        })
+        .then((res) => {
+          console.log("datas: ", res.data);
+          setUsersData(res.data.users);
+        })
+        .catch((err) => console.log(err));
+    };
+    getData();
+  }, [selectedOptionNumber, searchData]);
 
   const handleAddFormChange = (event) => {
     event.preventDefault();
@@ -42,6 +71,30 @@ const Students = () => {
     newFormData[fieldName] = fieldValue;
 
     setAddFormData(newFormData);
+  };
+
+  const handleAddFormSubmit = () => {
+    const newContact = {
+      id: 100,
+      image:
+        "https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_1280.jpg",
+      firstName: addFormData.firstName,
+      email: addFormData.email,
+      phone: addFormData.phone,
+      domain: addFormData.domain,
+      university: addFormData.university,
+    };
+
+    console.log("usersData: ", usersData);
+
+    axios
+      .post(API_USERS_URL + "/add", newContact)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleEditFormChange = (event) => {
@@ -56,40 +109,28 @@ const Students = () => {
     setEditFormData(newFormData);
   };
 
-  const handleAddFormSubmit = (event) => {
-    event.preventDefault();
-
-    const newContact = {
-      id: nanoid(),
-      fullName: addFormData.fullName,
-      address: addFormData.address,
-      phoneNumber: addFormData.phoneNumber,
-      email: addFormData.email,
-    };
-
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
-  };
-
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
     const editedContact = {
       id: editContactId,
-      fullName: editFormData.fullName,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
+      firstName: editFormData.firstName,
       email: editFormData.email,
+      phone: editFormData.phone,
+      domain: editFormData.domain,
+      university: editFormData.university,
     };
 
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
-
-    newContacts[index] = editedContact;
-
-    setContacts(newContacts);
+    axios
+      .put(API_USERS_URL + "/" + editContactId, editedContact)
+      .then((response) => {
+        console.log("response edit: ", response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     setEditContactId(null);
+    console.log("edit");
   };
 
   const handleEditClick = (event, contact) => {
@@ -97,35 +138,47 @@ const Students = () => {
     setEditContactId(contact.id);
 
     const formValues = {
-      fullName: contact.fullName,
-      address: contact.address,
-      phoneNumber: contact.phoneNumber,
+      firstName: contact.firstName,
       email: contact.email,
+      phone: contact.phone,
+      domain: contact.domain,
+      university: contact.university,
     };
 
     setEditFormData(formValues);
+  };
+
+  const handleDeleteClick = (contactId) => {
+    axios
+      .delete(API_USERS_URL + "/" + contactId)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleCancelClick = () => {
     setEditContactId(null);
   };
 
-  const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === contactId);
-
-    newContacts.splice(index, 1);
-
-    setContacts(newContacts);
+  const handleSearch = (event) => {
+    setPage(1);
+    setSearchData(event.target.value);
   };
 
-  const navigate = useNavigate();
-  const [page, setPage] = useState(1);
-  const [selectedOptionNumber, setSelectedOptionNumber] = useState(6);
-  console.log(selectedOptionNumber);
+  const debouncedResults = useMemo(() => {
+    return debounce(handleSearch, 300);
+  }, []);
 
-  const { slice, range } = useTable(contacts, page, selectedOptionNumber);
+  useEffect(() => {
+    return () => {
+      debouncedResults.cancel();
+    };
+  });
+
+  console.log("search: ", searchData);
 
   return (
     <div className="app-container">
@@ -134,10 +187,19 @@ const Students = () => {
           <span className="students-title">Students</span>
           <div className="table-header-right">
             <div className="inputwithSearch">
-              <input className="form-header-input" placeholder="Search..." />
+              <input
+                onChange={debouncedResults}
+                className="form-header-input"
+                placeholder="Search..."
+              />
               <AiOutlineSearch size={18} className="form-header-searchicon" />
             </div>
-            <span className="table-header-button">ADD NEW STUDENT</span>
+            <span
+              onClick={() => setAddItem(!addItem)}
+              className="table-header-button"
+            >
+              ADD NEW STUDENT
+            </span>
           </div>
         </div>
         <table>
@@ -150,17 +212,86 @@ const Students = () => {
               </tr>
             </thead>
           )}
+
           <tbody>
-            {slice.map((contact) => (
+            {addItem && (
+              <tr>
+                <td></td>
+                <td>
+                  <input
+                    name="firstName"
+                    type="text"
+                    required="required"
+                    placeholder="Enter a name..."
+                    onChange={handleAddFormChange}
+                    value={addFormData.firstName}
+                  />
+                </td>
+                <td>
+                  <input
+                    name="email"
+                    type="email"
+                    required="required"
+                    placeholder="Enter an email..."
+                    onChange={handleAddFormChange}
+                    value={addFormData.email}
+                  />
+                </td>
+                <td>
+                  <input
+                    name="phone"
+                    type="text"
+                    required="required"
+                    placeholder="Enter a phone number..."
+                    onChange={handleAddFormChange}
+                    value={addFormData.phoneNumber}
+                  />
+                </td>
+                <td>
+                  <input
+                    name="domain"
+                    type="text"
+                    required="required"
+                    placeholder="Enter an domain..."
+                    onChange={handleAddFormChange}
+                    value={addFormData.domain}
+                  />
+                </td>
+                <td>
+                  <input
+                    name="university"
+                    type="text"
+                    required="required"
+                    placeholder="Enter an university..."
+                    onChange={handleAddFormChange}
+                    value={addFormData.university}
+                  />
+                </td>
+                <button onClick={() => handleAddFormSubmit()}>Add</button>
+              </tr>
+            )}
+            {slice.map((contact, key) => (
               <Fragment>
                 {editContactId === contact.id ? (
-                  <EditTableRow
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
+                  isMobile ? (
+                    <MobileEditTable
+                      editFormData={editFormData}
+                      handleEditFormChange={handleEditFormChange}
+                      handleCancelClick={handleCancelClick}
+                    />
+                  ) : (
+                    <EditTableRow
+                      editFormData={editFormData}
+                      handleEditFormChange={handleEditFormChange}
+                      handleCancelClick={handleCancelClick}
+                    />
+                  )
                 ) : isMobile ? (
-                  <MobileTable contact={contact} />
+                  <MobileTable
+                    contact={contact}
+                    handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
+                  />
                 ) : (
                   <ReadOnlyRow
                     contact={contact}
@@ -172,47 +303,14 @@ const Students = () => {
             ))}
           </tbody>
         </table>
-        <TableFooter
-          range={range}
-          slice={slice}
-          setPage={setPage}
-          page={page}
-          setSelectedOptionNumber={setSelectedOptionNumber}
-        />
       </form>
-
-      {/* <h2>Add a Contact</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="fullName"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="address"
-          required="required"
-          placeholder="Enter an addres..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email..."
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
-      </form> */}
+      <TableFooter
+        range={range}
+        slice={slice}
+        setPage={setPage}
+        page={page}
+        setSelectedOptionNumber={setSelectedOptionNumber}
+      />
     </div>
   );
 };
