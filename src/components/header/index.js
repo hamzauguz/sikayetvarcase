@@ -1,7 +1,10 @@
 import React from "react";
-import "./Styles.header.css";
+
 import { PiCaretCircleLeftBold } from "react-icons/pi";
 import { GrNotification } from "react-icons/gr";
+
+import "./Styles.header.css";
+
 const Header = () => {
   return (
     <div className="header-container">

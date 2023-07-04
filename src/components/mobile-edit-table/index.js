@@ -1,8 +1,7 @@
 import React from "react";
+import tableHeaderItem from "../../utils/tableHeaderItem";
+
 import "./Styles.mobileedittable.css";
-import tableHeaderItem from "../../apis/tableHeaderItem";
-import { BsPencil } from "react-icons/bs";
-import { AiOutlineDelete } from "react-icons/ai";
 
 const MobileEditTable = ({
   editFormData,

@@ -1,8 +1,9 @@
 import React from "react";
-import "./Styles.Home.css";
 
 import CustomCard from "../../components/custom-card";
-import cardItem from "../../apis/cardItem";
+import cardItem from "../../utils/cardItem";
+
+import "./Styles.Home.css";
 
 const Home = () => {
   return (
