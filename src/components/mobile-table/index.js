@@ -1,8 +1,9 @@
 import React from "react";
-import "./Styles.mobiletable.css";
-import tableHeaderItem from "../../apis/tableHeaderItem";
+import tableHeaderItem from "../../utils/tableHeaderItem";
 import { BsPencil } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
+
+import "./Styles.mobiletable.css";
 
 const MobileTable = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (

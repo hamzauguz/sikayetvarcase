@@ -1,8 +1,7 @@
 import React from "react";
+import tableHeaderItem from "../../utils/tableHeaderItem";
+
 import "./Styles.mobileedittable.css";
-import tableHeaderItem from "../../apis/tableHeaderItem";
-import { BsPencil } from "react-icons/bs";
-import { AiOutlineDelete } from "react-icons/ai";
 
 const MobileEditTable = ({
   editFormData,
@@ -14,6 +13,7 @@ const MobileEditTable = ({
       <div className="mobile-header">
         {tableHeaderItem.map((item, key) => (
           <span
+            key={key}
             className={`table-header-item edit-mobile-table  header-img-${key}`}
           >
             {item.title}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+
 import "./Styles.tablefooter.css";
 
 const TableFooter = ({
@@ -7,9 +8,6 @@ const TableFooter = ({
   setPage,
   page,
   slice,
-  selectItem,
-  optionValue,
-  optionTitle,
   setSelectedOptionNumber,
 }) => {
   const [selectedOption, setSelectedOption] = useState(6);

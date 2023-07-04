@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import menuItem from "../../apis/menuItem";
+import menuItem from "../../utils/menuItem";
 
 import { FaBars } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";

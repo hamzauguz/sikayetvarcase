@@ -1,6 +1,7 @@
 import React from "react";
 import { BsPencil } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
+
 import "./Styles.readonlyrow.css";
 
 const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./Styles.Login.css";
 import InputWithLabel from "../../components/input-with-label";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import "./Styles.Login.css";
 
 const Login = () => {
   const [inputs, setInputs] = useState({});

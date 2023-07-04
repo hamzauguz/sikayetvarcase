@@ -1,41 +1,29 @@
 import React, { useState, Fragment, useEffect, useMemo } from "react";
-import "./Styles.Students.css";
+
 import EditTableRow from "../../components/edit-table-row";
 import ReadOnlyRow from "../../components/read-only-row";
-import useTable from "../../utils/useTable";
+import MobileTable from "../../components/mobile-table";
+import MobileEditTable from "../../components/mobile-edit-table";
 import TableFooter from "../../components/table-footer";
+
+import useTable from "../../utils/useTable";
+import tableHeaderItem from "../../utils/tableHeaderItem";
+
 import { AiOutlineSearch } from "react-icons/ai";
 import { useMediaQuery } from "@react-hook/media-query";
-import MobileTable from "../../components/mobile-table";
-import tableHeaderItem from "../../apis/tableHeaderItem";
-import axios from "../../services";
-import { API_USERS_URL, BASE_URL } from "../../apis";
+
+import { API_USERS_URL } from "../../apis";
 import debounce from "lodash.debounce";
-import MobileEditTable from "../../components/mobile-edit-table";
+import axios from "../../services";
+
 import { Toaster, toast } from "react-hot-toast";
 import Swal from "sweetalert2";
+
+import "./Styles.Students.css";
 
 const Students = () => {
   const isMobile = useMediaQuery("(max-width: 750px)");
 
-  const openAlert = () => {
-    Swal.fire({
-      title: "Sil",
-      text: "Bu etkinliği silmek istiyor musunuz?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Evet",
-      cancelButtonText: "Hayır",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Kullanıcı "Evet" butonuna tıkladı
-        // İşlemleri burada gerçekleştirin
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // Kullanıcı "Hayır" butonuna tıkladı veya dışarıya tıklandı
-        // İşlemleri burada gerçekleştirin
-      }
-    });
-  };
   const [addFormData, setAddFormData] = useState({
     image: "",
     firstName: "",
@@ -112,6 +100,15 @@ const Students = () => {
       .then((response) => {
         console.log(response);
         toast.success("Data successfully added");
+        setAddFormData({
+          image: "",
+          firstName: "",
+          email: "",
+          phone: "",
+          domain: "",
+          university: "",
+        });
+        setAddItem(false);
       })
       .catch((error) => {
         console.error(error);
@@ -151,8 +148,6 @@ const Students = () => {
       cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Kullanıcı "Evet" butonuna tıkladı
-        // İşlemleri burada gerçekleştirin
         axios
           .put(API_USERS_URL + "/" + editContactId, editedContact)
           .then((response) => {
@@ -163,8 +158,6 @@ const Students = () => {
             console.error(error);
           });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // Kullanıcı "Hayır" butonuna tıkladı veya dışarıya tıklandı
-        // İşlemleri burada gerçekleştirin
       }
     });
 
@@ -197,8 +190,6 @@ const Students = () => {
       cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Kullanıcı "Evet" butonuna tıkladı
-        // İşlemleri burada gerçekleştirin
         axios
           .delete(API_USERS_URL + "/" + contactId)
           .then((response) => {
@@ -209,8 +200,6 @@ const Students = () => {
             console.error(error);
           });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // Kullanıcı "Hayır" butonuna tıkladı veya dışarıya tıklandı
-        // İşlemleri burada gerçekleştirin
       }
     });
   };
@@ -298,7 +287,7 @@ const Students = () => {
                     type="text"
                     placeholder="Enter a phone number..."
                     onChange={handleAddFormChange}
-                    value={addFormData.phoneNumber}
+                    value={addFormData.phone}
                   />
                 </td>
                 <td>
