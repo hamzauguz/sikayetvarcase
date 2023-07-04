@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/sikayetvarcase/static/css/main.e7c66e4a.css",
+    "main.js": "/sikayetvarcase/static/js/main.a4bfa47a.js",
+    "static/js/787.175dde4e.chunk.js": "/sikayetvarcase/static/js/787.175dde4e.chunk.js",
+    "static/media/avatar.png": "/sikayetvarcase/static/media/avatar.714b584d86f73653c9c4.png",
+    "index.html": "/sikayetvarcase/index.html",
+    "main.e7c66e4a.css.map": "/sikayetvarcase/static/css/main.e7c66e4a.css.map",
+    "main.a4bfa47a.js.map": "/sikayetvarcase/static/js/main.a4bfa47a.js.map",
+    "787.175dde4e.chunk.js.map": "/sikayetvarcase/static/js/787.175dde4e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e7c66e4a.css",
+    "static/js/main.a4bfa47a.js"
+  ]
+}
