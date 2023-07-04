@@ -29,10 +29,11 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="/login">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to={"/home"} replace={true} />} />
+          <Route path="/" element={<Navigate to={"/login"} replace={true} />} />
           <Route exact element={<PrivateRoutes tokenstate={isLoggedIn} />}>
             <Route
               exact
