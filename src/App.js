@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter basename="/login">
+      <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to={"/home"} replace={true} />} />
